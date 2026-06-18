@@ -2,7 +2,31 @@
 <html lang="en">
   <head>
     <link rel="icon" href="src/images/sport-car.png" type="image/x-icon">
-
+    <!-- Check auth immediately before page renders -->
+    <script>
+        (function() {
+            const token = localStorage.getItem("jwt");
+            if (token) {
+                document.documentElement.setAttribute("data-auth", "user");
+            } else {
+                document.documentElement.setAttribute("data-auth", "guest");
+            }
+        })();
+    </script>
+    
+    <style>
+        /* Hide guest buttons if authenticated */
+        [data-auth="user"] #guestButtons,
+        [data-auth="user"] #guestButtonsDesktop {
+            display: none !important;
+        }
+        
+        /* Hide user buttons if not authenticated */
+        [data-auth="guest"] #userButtons,
+        [data-auth="guest"] #userButtonsDesktop {
+            display: none !important;
+        }
+    </style>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link rel="stylesheet" href="src/style.css" />    <title>Login</title>
@@ -144,12 +168,27 @@
 
     const data = await response.json();
 
-    console.log(data);
+    console.log("LOGIN API RESPONSE (FULL):", JSON.stringify(data, null, 2));
 
     if (data.success) {
       console.log("LOGIN RESPONSE:", data);
-      localStorage.setItem('jwt', data.token || data.accessToken);
-      return data.user;
+      // Check different possible token locations
+      const token = data.token || data.accessToken || data.data?.token || data.data?.accessToken;
+      console.log("Looking for token in:", {
+        "data.token": data.token,
+        "data.accessToken": data.accessToken,
+        "data.data.token": data.data?.token,
+        "data.data.accessToken": data.data?.accessToken,
+        "found_token": token || "NOT FOUND"
+      });
+      
+      if (!token) {
+        throw new Error("No token found in response. Backend not returning authentication token.");
+      }
+      
+      localStorage.setItem('jwt', token);
+      console.log("Token saved to localStorage");
+      return data.user || data.data?.user || data.data;
     } else {
       throw new Error(data.message || 'Login failed');
     }

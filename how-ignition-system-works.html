@@ -2,7 +2,31 @@
 <html lang="en">
   <head>
     <link rel="icon" href="src/images/sport-car.png" type="image/x-icon">
-
+    <!-- Check auth immediately before page renders -->
+    <script>
+        (function() {
+            const token = localStorage.getItem("jwt");
+            if (token) {
+                document.documentElement.setAttribute("data-auth", "user");
+            } else {
+                document.documentElement.setAttribute("data-auth", "guest");
+            }
+        })();
+    </script>
+    
+    <style>
+        /* Hide guest buttons if authenticated */
+        [data-auth="user"] #guestButtons,
+        [data-auth="user"] #guestButtonsDesktop {
+            display: none !important;
+        }
+        
+        /* Hide user buttons if not authenticated */
+        [data-auth="guest"] #userButtons,
+        [data-auth="guest"] #userButtonsDesktop {
+            display: none !important;
+        }
+    </style>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>How the Ignition System Works</title>
@@ -179,17 +203,23 @@
             class="focus:outline-none"
           />
         </form>
-        <div class="sign-buttons flex gap-2">
+        <div id="guestButtonsDesktop" class="sign-buttons flex gap-2">
           <a
-            href="src/pages/login.html"
+            href="login.html"
             class="rounded-full border-white border px-6 py-2.25 hover:bg-white hover:text-black"
             >Sign In</a
           >
           <a
-            href="src/pages/signup.html"
+            href="signup.html"
             class="rounded-full bg-white text-black px-6 py-2.25 hover:bg-transparent hover:text-white hover:border-white border"
             >Sign Up</a
           >
+        </div>
+        <div id="userButtonsDesktop" class="sign-buttons flex gap-2">
+          <a href="#" id="userNameDesktop"
+            class="rounded-full border-white border px-6 py-2.25 hover:bg-white hover:text-black">Hi, User</a>
+          <a href="#" id="logoutBtnDesktop"
+            class="rounded-full bg-white text-black px-6 py-2.25 hover:bg-transparent hover:text-white hover:border-white border">Logout</a>
         </div>
       </div>
     </nav>

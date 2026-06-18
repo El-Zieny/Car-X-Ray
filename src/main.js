@@ -1,11 +1,16 @@
+import { updateAuthUI } from "./auth.js";
+
 document.addEventListener("DOMContentLoaded", () => {
+  console.log("=== PAGE LOADED ===");
+  console.log("Token in localStorage:", localStorage.getItem("jwt") ? "YES" : "NO");
+  
   initApp();
 });
 
 function initApp() {
   initMenu();
   initSlider();
-  initAuthUI();
+  updateAuthUI();
 }
 
 /* ================= MENU ================= */
@@ -75,47 +80,4 @@ function initSlider() {
 }
 
 /* ================= AUTH ================= */
-async function getProfile() {
-  const token = localStorage.getItem("jwt");
-  if (!token) return null;
-
-  try {
-    const res = await fetch(
-      "https://backend-project1-production.up.railway.app/auth/me",
-      {
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
-      }
-    );
-
-    if (!res.ok) return null;
-    return await res.json();
-  } catch {
-    return null;
-  }
-}
-
-async function initAuthUI() {
-  const user = await getProfile();
-
-  const guestButtons = document.getElementById("guestButtons");
-  const userButtons = document.getElementById("userButtons");
-  const guestButtonsDesktop = document.getElementById("guestButtonsDesktop");
-  const userButtonsDesktop = document.getElementById("userButtonsDesktop");
-
-  if (guestButtons) guestButtons.style.display = user ? "none" : "flex";
-  if (userButtons) userButtons.style.display = user ? "flex" : "none";
-
-  if (guestButtonsDesktop) guestButtonsDesktop.style.display = user ? "none" : "flex";
-  if (userButtonsDesktop) userButtonsDesktop.style.display = user ? "flex" : "none";
-
-  function logout(e) {
-    e.preventDefault();
-    localStorage.removeItem("jwt");
-    window.location.href = "index.html";
-  }
-
-  document.getElementById("logoutBtnMobile")?.addEventListener("click", logout);
-  document.getElementById("logoutBtnDesktop")?.addEventListener("click", logout);
-}
+// Auth functions are now in auth.js
