@@ -1,0 +1,434 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <link rel="icon" href="src/images/sport-car.png" type="image/x-icon">
+    <!-- Check auth immediately before page renders -->
+    <script>
+        (function() {
+            const token = localStorage.getItem("jwt");
+            if (token) {
+                document.documentElement.setAttribute("data-auth", "user");
+            } else {
+                document.documentElement.setAttribute("data-auth", "guest");
+            }
+        })();
+    </script>
+    
+    <style>
+        /* Hide guest buttons if authenticated */
+        [data-auth="user"] #guestButtons,
+        [data-auth="user"] #guestButtonsDesktop {
+            display: none !important;
+        }
+        
+        /* Hide user buttons if not authenticated */
+        [data-auth="guest"] #userButtons,
+        [data-auth="guest"] #userButtonsDesktop {
+            display: none !important;
+        }
+    </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About Us</title>
+    <link rel="stylesheet" href="src/style.css" />
+    
+    <!-- Check auth immediately before page renders -->
+    <script>
+        (function() {
+            const token = localStorage.getItem("jwt");
+            if (token) {
+                document.documentElement.setAttribute("data-auth", "user");
+            } else {
+                document.documentElement.setAttribute("data-auth", "guest");
+            }
+        })();
+    </script>
+    
+    <style>
+        /* Hide guest buttons if authenticated */
+        [data-auth="user"] #guestButtons,
+        [data-auth="user"] #guestButtonsDesktop {
+            display: none !important;
+        }
+        
+        /* Hide user buttons if not authenticated */
+        [data-auth="guest"] #userButtons,
+        [data-auth="guest"] #userButtonsDesktop {
+            display: none !important;
+        }
+    </style>
+  </head>
+  <body class="bg-[#2A2A2A] text-[#BFC7D5]">
+
+    <!-- MOBILE NAV -->
+    <nav class="lg:hidden">
+      <div class="bg-nav-bg h-18 flex justify-between items-center text-white">
+        <a href="index.html">
+          <img
+            src="src/images/HomePage/ChatGPT Image.png"
+            class="w-40"
+            alt="logo" />
+        </a>
+        <button id="menu-button"
+          class="text-3xl mr-6 text-gray-400">☰</button>
+      </div>
+      <div id="mob-nav" class="mob-nav bg-[#1F1F1F] w-full px-10"
+        style="max-height: 0px; overflow: hidden; transition: max-height 0.3s ease;">
+        <div class="flex flex-col">
+          <a
+            class="hover:bg-neutral-800 w-full items-center gap-2 text-2xl text-gray-400 py-6"
+            href="index.html">
+            <div class="flex w-full justify-between">
+              <div class="flex gap-4">
+                <svg class="mt-1 w-6 h-6 inline"
+                  fill="currentColor"
+                  viewBox="0 0 20 20">
+                  <path
+                    d="M10.707 2.293a1 1 0 00-1.414 0l-7 7a1 1 0 001.414 1.414L4 10.414V17a1 1 0 001 1h2a1 1 0 001-1v-2a1 1 0 011-1h2a1 1 0 011 1v2a1 1 0 001 1h2a1 1 0 001-1v-6.586l.293.293a1 1 0 001.414-1.414l-7-7z">
+                  </path>
+                </svg>
+                <p>Home</p>
+              </div>
+              <p class="justify-self-end">></p>
+            </div>
+          </a>
+
+          <div class="border-t border-neutral-700"></div>
+
+          <a
+            class="hover:bg-neutral-800 w-full items-center gap-2 text-2xl text-gray-400 py-6"
+            href="aboutus.html">
+            <div class="flex w-full justify-between">
+              <div class="flex gap-4">
+                <svg class="mt-1 w-6 h-6" fill="currentColor"
+                  viewBox="0 0 20 20"><path
+                    fill-rule="evenodd"
+                    d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z"
+                    clip-rule="evenodd"></path>
+                </svg>
+                <p>About</p>
+              </div>
+              <p class="justify-self-end">></p>
+            </div>
+          </a>
+
+          <div class="border-t border-neutral-700"></div>
+
+          <a
+            class="hover:bg-neutral-800 w-full items-center gap-2 text-2xl text-gray-400 py-6"
+            href="categories.html">
+            <div class="flex w-full justify-between">
+              <div class="flex gap-4">
+                <svg class="mt-1 w-6 h-6 inline"
+                  fill="currentColor"
+                  viewBox="0 0 20 20"><path
+                    d="M3 4a1 1 0 011-1h12a1 1 0 011 1v2a1 1 0 01-1 1H4a1 1 0 01-1-1V4z"></path><path
+                    fill-rule="evenodd"
+                    d="M3 10a1 1 0 011-1h6a1 1 0 011 1v6a1 1 0 01-1 1H4a1 1 0 01-1-1v-6zm8-1h4a1 1 0 011 1v6a1 1 0 01-1 1h-4a1 1 0 01-1-1v-6a1 1 0 011-1z"
+                    clip-rule="evenodd"></path></svg>
+                <p>Categories</p>
+              </div>
+              <p class="justify-self-end">></p>
+            </div>
+          </a>
+        </div>
+
+        <div class="border-t border-neutral-700"></div>
+
+        <div class="search my-8">
+          <form action method="GET"
+            class="flex gap-4 bg-[#2A2A2A] px-4 py-2 rounded-full w-full">
+            <img src="src/images/HomePage/icons/Icon-3.svg"
+              class="size-6 mt-2" alt>
+            <input type="search" placeholder="Search..."
+              class="focus:outline-none w-full text-gray-400 h-10 text-2xl" />
+          </form>
+        </div>
+
+        <div id="guestButtons"
+          class="sign-buttons flex flex-col gap-6 mb-12">
+          <a href="login.html"
+            class="rounded-xl py-4 text-center border-gray-200 border text-gray-200 px-6">Sign
+            In</a>
+          <a href="signup.html"
+            class="rounded-xl py-4 text-center bg-gray-200 text-black px-6">Sign
+            Up</a>
+        </div>
+
+        <div id="userButtons"
+          class="sign-buttons flex flex-col gap-6 mb-12">
+          <a href="index.html" id="userNameMobile"
+            class="rounded-xl py-4 text-center border-gray-200 border text-gray-200 px-6">Hi, User</a>
+          <a href="#" id="logoutBtnMobile"
+            class="rounded-xl py-4 text-center bg-gray-200 text-black px-6">Logout</a>
+        </div>
+      </div>
+    </nav>
+
+    <!-- DESKTOP NAV -->
+    <nav
+      class="bg-nav-bg h-18 justify-between items-center text-white hidden lg:flex pr-8">
+      <div class="left-nav flex-row items-center flex h-full">
+        <a href="index.html">
+          <img
+            src="src/images/HomePage/ChatGPT Image.png"
+            alt="logo" />
+        </a>
+        <div class="flex h-full items-center">
+          <a
+            class="text-gray-200 text-xl px-3 h-full text-center flex items-center hover:bg-neutral-800"
+            href="index.html">Home</a>
+          <a
+            class="text-gray-200 text-xl px-3 h-full text-center flex items-center hover:bg-neutral-800"
+            href="aboutus.html">About</a>
+          <a
+            class="text-gray-200 text-xl px-3 h-full text-center flex items-center hover:bg-neutral-800"
+            href="categories.html">Categories</a>
+        </div>
+      </div>
+      <div class="right-nav flex gap-4">
+        <form action method="GET"
+          class="flex gap-2 bg-[#2A2A2A] px-4 py-2 rounded-full w-64">
+          <img src="src/images/HomePage/icons/Icon-3.svg" alt>
+          <input type="search" placeholder="Search..."
+            class="focus:outline-none" />
+        </form>
+        <div id="guestButtonsDesktop" class="sign-buttons flex gap-2">
+          <a href="login.html"
+            class="rounded-full border-white border px-6 py-2.25 
+              hover:bg-white hover:text-black">Sign In</a>
+          <a href="signup.html"
+            class="rounded-full bg-white text-black px-6 py-2.25 hover:bg-transparent hover:text-white hover:border-white border">Sign
+            Up</a>
+        </div>
+
+        <div id="userButtonsDesktop" class="sign-buttons flex gap-2">
+          <a href="index.html" id="userNameDesktop"
+            class="rounded-full border-white border px-6 py-2.25 hover:bg-white hover:text-black">Hi, User</a>
+          <a href="#" id="logoutBtnDesktop"
+            class="rounded-full bg-white text-black px-6 py-2.25 hover:bg-transparent hover:text-white hover:border-white border">Logout</a>
+        </div>
+      </div>
+    </nav>
+
+    <!-- MAIN CONTENT -->
+    <main class="bg-[#2A2A2A]">
+      <!-- Hero Section -->
+      <section class="min-h-screen flex items-center justify-center px-4 py-16 md:py-24">
+        <div class="max-w-4xl mx-auto text-center">
+          <h1 class="text-4xl md:text-6xl font-bold mb-6 text-white">
+            About <span class="text-primary">Car X-ray</span>
+          </h1>
+          <p class="text-lg md:text-xl text-[#BFC7D5] mb-8">
+            Understanding your vehicle has never been easier. Car X-ray is your comprehensive guide to automotive systems and technology.
+          </p>
+        </div>
+      </section>
+
+      <!-- Mission Section -->
+      <section class="px-4 py-16 md:py-24 bg-[#1F1F1F]">
+        <div class="max-w-4xl mx-auto">
+          <h2 class="text-3xl md:text-4xl font-bold mb-8 text-white text-center">Our Mission</h2>
+          <p class="text-lg text-[#BFC7D5] mb-6 leading-relaxed">
+            At Car X-ray, we believe that vehicle education should be accessible to everyone. Our mission is to demystify complex automotive systems and provide clear, understandable explanations of how your car works.
+          </p>
+          <p class="text-lg text-[#BFC7D5] leading-relaxed">
+            Whether you're a car enthusiast, a daily commuter, or someone curious about vehicle technology, Car X-ray delivers comprehensive, visual guides that break down every system in your vehicle into digestible information.
+          </p>
+        </div>
+      </section>
+
+      <!-- Features Section -->
+      <section class="px-4 py-16 md:py-24">
+        <div class="max-w-4xl mx-auto">
+          <h2 class="text-3xl md:text-4xl font-bold mb-12 text-white text-center">Why Car X-ray?</h2>
+          
+          <div class="grid md:grid-cols-2 gap-8">
+            <!-- Feature 1 -->
+            <div class="bg-[#1F1F1F] p-8 rounded-lg border border-[#3A3A3A]">
+              <div class="w-12 h-12 bg-primary rounded-lg flex items-center justify-center mb-4">
+                <svg class="w-6 h-6 text-black" fill="currentColor" viewBox="0 0 20 20">
+                  <path d="M13 6a3 3 0 11-6 0 3 3 0 016 0zM18 8a2 2 0 11-4 0 2 2 0 014 0zM14 15a4 4 0 00-8 0v3h8v-3zM6 8a2 2 0 11-4 0 2 2 0 014 0zM16 18v-3a5.972 5.972 0 00-.75-2.906A3.005 3.005 0 0119 15v3h-3zM4.75 12.094A5.973 5.973 0 004 15v3H1v-3a3 3 0 013.75-2.906z"></path>
+                </svg>
+              </div>
+              <h3 class="text-xl font-bold text-white mb-3">Expert Knowledge</h3>
+              <p class="text-[#BFC7D5]">
+                Access detailed information about every major automotive system, from engines to electrical systems.
+              </p>
+            </div>
+
+            <!-- Feature 2 -->
+            <div class="bg-[#1F1F1F] p-8 rounded-lg border border-[#3A3A3A]">
+              <div class="w-12 h-12 bg-primary rounded-lg flex items-center justify-center mb-4">
+                <svg class="w-6 h-6 text-black" fill="currentColor" viewBox="0 0 20 20">
+                  <path fill-rule="evenodd" d="M12.316 3.051a1 1 0 01.633 1.265l-4 12a1 1 0 11-1.898-.632l4-12a1 1 0 011.265-.633zM5.707 6.293a1 1 0 010 1.414L3.414 10l2.293 2.293a1 1 0 11-1.414 1.414l-3-3a1 1 0 010-1.414l3-3a1 1 0 011.414 0zm8.586 0a1 1 0 011.414 0l3 3a1 1 0 010 1.414l-3 3a1 1 0 11-1.414-1.414L16.586 10l-2.293-2.293a1 1 0 010-1.414z" clip-rule="evenodd"></path>
+                </svg>
+              </div>
+              <h3 class="text-xl font-bold text-white mb-3">Easy to Understand</h3>
+              <p class="text-[#BFC7D5]">
+                Complex automotive concepts explained in clear, straightforward language accessible to everyone.
+              </p>
+            </div>
+
+            <!-- Feature 3 -->
+            <div class="bg-[#1F1F1F] p-8 rounded-lg border border-[#3A3A3A]">
+              <div class="w-12 h-12 bg-primary rounded-lg flex items-center justify-center mb-4">
+                <svg class="w-6 h-6 text-black" fill="currentColor" viewBox="0 0 20 20">
+                  <path d="M10.5 1.5H5.75A2.75 2.75 0 003 4.25v11.5A2.75 2.75 0 005.75 18.5h8.5a2.75 2.75 0 002.75-2.75V9.5m-13-4h6m-6 3h6m-6 3h3m6-11v6m3-3l-3 3-3-3" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" fill="none"></path>
+                </svg>
+              </div>
+              <h3 class="text-xl font-bold text-white mb-3">Visual Guides</h3>
+              <p class="text-[#BFC7D5]">
+                Learn through detailed visual explanations and comprehensive category guides.
+              </p>
+            </div>
+
+            <!-- Feature 4 -->
+            <div class="bg-[#1F1F1F] p-8 rounded-lg border border-[#3A3A3A]">
+              <div class="w-12 h-12 bg-primary rounded-lg flex items-center justify-center mb-4">
+                <svg class="w-6 h-6 text-black" fill="currentColor" viewBox="0 0 20 20">
+                  <path fill-rule="evenodd" d="M11.3 1.046A1 1 0 0112 2v5h4a1 1 0 01.82 1.573l-7 10.666A1 1 0 018 17v-5H4a1 1 0 01-.82-1.573l7-10.666z" clip-rule="evenodd"></path>
+                </svg>
+              </div>
+              <h3 class="text-xl font-bold text-white mb-3">Always Updated</h3>
+              <p class="text-[#BFC7D5]">
+                Stay informed with the latest automotive technology and system explanations.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- What We Cover Section -->
+      <section class="px-4 py-16 md:py-24 bg-[#1F1F1F]">
+        <div class="max-w-4xl mx-auto">
+          <h2 class="text-3xl md:text-4xl font-bold mb-12 text-white text-center">What We Cover</h2>
+          
+          <div class="grid md:grid-cols-2 gap-6">
+            <div class="flex items-start gap-4">
+              <div class="w-8 h-8 bg-primary rounded-full flex-shrink-0 flex items-center justify-center">
+                <svg class="w-5 h-5 text-black" fill="currentColor" viewBox="0 0 20 20">
+                  <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
+                </svg>
+              </div>
+              <div>
+                <h3 class="text-lg font-semibold text-white mb-2">Engine Systems</h3>
+                <p class="text-[#BFC7D5]">How engines work, from power creation to timing systems.</p>
+              </div>
+            </div>
+
+            <div class="flex items-start gap-4">
+              <div class="w-8 h-8 bg-primary rounded-full flex-shrink-0 flex items-center justify-center">
+                <svg class="w-5 h-5 text-black" fill="currentColor" viewBox="0 0 20 20">
+                  <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
+                </svg>
+              </div>
+              <div>
+                <h3 class="text-lg font-semibold text-white mb-2">Transmission & Drivetrain</h3>
+                <p class="text-[#BFC7D5]">Manual and automatic transmission systems explained.</p>
+              </div>
+            </div>
+
+            <div class="flex items-start gap-4">
+              <div class="w-8 h-8 bg-primary rounded-full flex-shrink-0 flex items-center justify-center">
+                <svg class="w-5 h-5 text-black" fill="currentColor" viewBox="0 0 20 20">
+                  <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
+                </svg>
+              </div>
+              <div>
+                <h3 class="text-lg font-semibold text-white mb-2">Braking & Steering</h3>
+                <p class="text-[#BFC7D5]">Safety and control systems in your vehicle.</p>
+              </div>
+            </div>
+
+            <div class="flex items-start gap-4">
+              <div class="w-8 h-8 bg-primary rounded-full flex-shrink-0 flex items-center justify-center">
+                <svg class="w-5 h-5 text-black" fill="currentColor" viewBox="0 0 20 20">
+                  <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
+                </svg>
+              </div>
+              <div>
+                <h3 class="text-lg font-semibold text-white mb-2">Electrical Systems</h3>
+                <p class="text-[#BFC7D5]">Charging, starting, and ignition systems.</p>
+              </div>
+            </div>
+
+            <div class="flex items-start gap-4">
+              <div class="w-8 h-8 bg-primary rounded-full flex-shrink-0 flex items-center justify-center">
+                <svg class="w-5 h-5 text-black" fill="currentColor" viewBox="0 0 20 20">
+                  <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
+                </svg>
+              </div>
+              <div>
+                <h3 class="text-lg font-semibold text-white mb-2">Cooling & Heating</h3>
+                <p class="text-[#BFC7D5]">Temperature management systems.</p>
+              </div>
+            </div>
+
+            <div class="flex items-start gap-4">
+              <div class="w-8 h-8 bg-primary rounded-full flex-shrink-0 flex items-center justify-center">
+                <svg class="w-5 h-5 text-black" fill="currentColor" viewBox="0 0 20 20">
+                  <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
+                </svg>
+              </div>
+              <div>
+                <h3 class="text-lg font-semibold text-white mb-2">Fuel Systems</h3>
+                <p class="text-[#BFC7D5]">Fuel injection, pumps, and carburetors.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- CTA Section -->
+      <section class="px-4 py-16 md:py-24">
+        <div class="max-w-4xl mx-auto text-center">
+          <h2 class="text-3xl md:text-4xl font-bold mb-6 text-white">Ready to Learn?</h2>
+          <p class="text-lg text-[#BFC7D5] mb-8">
+            Explore our comprehensive guides and discover how your vehicle truly works.
+          </p>
+          <div class="flex flex-col sm:flex-row gap-4 justify-center">
+            <a href="categories.html"
+              class="rounded-full bg-primary text-black font-bold px-8 py-3 hover:bg-yellow-500 transition-colors">
+              Explore Categories
+            </a>
+            <a href="index.html"
+              class="rounded-full border-2 border-primary text-primary font-bold px-8 py-3 hover:bg-primary hover:text-black transition-colors">
+              Back to Home
+            </a>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-[#1A1A1A] border-t border-[#3A3A3A] px-4 py-12">
+      <div class="max-w-6xl mx-auto">
+        <div class="grid md:grid-cols-3 gap-8 mb-8">
+          <div>
+            <h4 class="text-white font-bold mb-4">Car X-ray</h4>
+            <p class="text-[#BFC7D5] text-sm">Understanding your vehicle through comprehensive automotive guides.</p>
+          </div>
+          <div>
+            <h4 class="text-white font-bold mb-4">Navigation</h4>
+            <ul class="space-y-2 text-sm text-[#BFC7D5]">
+              <li><a href="index.html" class="hover:text-primary">Home</a></li>
+              <li><a href="categories.html" class="hover:text-primary">Categories</a></li>
+              <li><a href="aboutus.html" class="hover:text-primary">About Us</a></li>
+            </ul>
+          </div>
+          <div>
+            <h4 class="text-white font-bold mb-4">Connect</h4>
+            <p class="text-[#BFC7D5] text-sm">Have questions? We'd love to hear from you.</p>
+          </div>
+        </div>
+        <div class="border-t border-[#3A3A3A] pt-8 text-center text-[#7A8195] text-sm">
+          <p>&copy; 2024 Car X-ray. All rights reserved.</p>
+        </div>
+      </div>
+    </footer>
+
+    <script src="src/auth.js"></script>
+    <script src="src/main.js"></script>
+  </body>
+</html>
